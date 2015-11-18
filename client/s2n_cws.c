@@ -42,7 +42,7 @@ static void * fANBF_mask(uint32_t mask_key, void * data, int32_t len)
     }
     return _d;
 }
-void ffree_cws(struct cws_ctx *ws)
+void fclose_cws(struct cws_ctx *ws)
 {
     if(ws)
     {
@@ -54,8 +54,13 @@ void ffree_cws(struct cws_ctx *ws)
         _free(ws->host);
         _free(ws->resource);
         st_netfd_close(ws->fd);
-        _free(ws);
     }
+}
+void ffree_cws(struct cws_ctx *ws)
+{
+    fclose_cws(ws);
+    st_netfd_close(ws->fd);
+    _free(ws);
 }
 
 static char* fgetup2linefeed(const char *startFrom)

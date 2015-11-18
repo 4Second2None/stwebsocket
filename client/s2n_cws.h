@@ -77,6 +77,8 @@ struct cws_ctx * fnew_cws(const char * url);
 */
 void ffree_cws(struct cws_ctx *ws);
 
+void fclose_cws(struct cws_ctx *ws);
+
 #ifdef	__cplusplus
 }
 #endif
